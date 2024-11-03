@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<title>Shop</title>
 	<jsp:include page="/layout/meta.jsp" /> <jsp:include page="/layout/link.jsp" />
+	<link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>   
 	<% 
@@ -24,6 +25,10 @@
 			if( msg.equals("1") ) {
 		%>
 			<h1 class="text-center">회원 가입이 완료되었습니다.</h1>
+			<br>
+			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+			<a href="./user/index.jsp" class="mainBtn">메인 화면</a>
+			</div>
 		<%
 			}
 		%>
@@ -33,8 +38,8 @@
 		<%
 			if( msg.equals("0") ) {
 		%>
-			<h1 class="text-center">님 환영 합니다.</h1>
-			<a href="./shop/products.jsp" class="mainBtn">메인 화면</a>
+			<h1 class="text-center">joeun님 환영 합니다.</h1>
+			<a href="./user/index.jsp" class="mainBtn">메인 화면</a>
 		<%
 			}
 		%>
@@ -45,6 +50,10 @@
 			if( msg.equals("2") ) {
 		%>
 			<h1 class="text-center">회원 정보가 수정되었습니다.</h1>
+			<br>
+			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+			<a href="./user/index.jsp" class="mainBtn">메인 화면</a>
+			</div>
 		<%
 			}
 		%>
@@ -55,6 +64,11 @@
 			if( msg.equals("3") ) {
 		%>
 			<h1 class="text-center">회원 정보가 삭제되었습니다.</h1>
+			<br>
+			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+			<a href="./user/index.jsp" class="mainBtn">메인 화면</a>
+			</div>
+			
 		<%
 			}
 		%>

@@ -72,7 +72,7 @@ public class LoginFilter extends HttpFilter implements Filter {
 		}
 		
 		if ( rememberMe != null && token != null ) {
-			PersistentLogin persistentLogin = PersistentLogin.selectByToken(token);
+			PersistentLogin persistentLogin = userRepository.selectToken(token);
 			
 			if ( persistentLogin != null ) {
 				loginId = persistentLogin.getUserId();

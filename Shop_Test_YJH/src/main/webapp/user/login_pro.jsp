@@ -37,23 +37,32 @@
 	if( rememberId != null && rememberId.equals("on") ) {
 		cookieRememberId.setValue( URLEncoder.encode(rememberId, "UTF-8") );
 		cookieId.setValue( URLEncoder.encode(id, "UTF-8") );
+		cookieRememberId.setMaxAge(60 * 60 * 24);
+		cookieId.setMaxAge(60 * 60 * 24);
+	} else {
+		cookieRememberId.setMaxAge(0);
+		cookieId.setMaxAge(0);
 	}
+	
 	// 자동 로그인
 	String rememberMe = request.getParameter("remember-me");
 	Cookie cookieRememberMe = new Cookie("rememberMe", "");
 	Cookie cookieToken = new Cookie("token", "");
 	
 	if( rememberMe != null && rememberMe.equals("on") ) {
-		// 체크
-		PersistentLogin persistentLogin = new PersistentLogin();
-		UserRepository userRepository = UserRepository.refreshToken("id");
+		PersistentLogin persistentLogin = userDAO.selectTokenByToken(loginUser.getId());
 		String token = null;
+		// 체크
 		if( persistentLogin != null ) {
 			token = persistentLogin.getToken();
+			cookieRememberMe.setValue( URLEncoder.encode(rememberMe, "UTF-8"));
+			cookieToken.setValue( URLEncoder.encode(token, "UTF-8"));
+			cookieRememberMe.setMaxAge(60 * 60 * 24 * 30);
+			cookieToken.setMaxAge(60 * 60 * 24 * 30);
 		}
-		cookieRememberMe.setValue( URLEncoder.encode(rememberMe, "UTF-8"));
-		cookieToken.setValue( URLEncoder.encode(id, "UTF-8"));
-		
+	} else {
+		cookieRememberMe.setMaxAge(0);
+		cookieToken.setMaxAge(0);
 	}
 	// 쿠키 전달
 	response.addCookie(cookieRememberId);

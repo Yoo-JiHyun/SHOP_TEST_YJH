@@ -10,7 +10,13 @@
 	<jsp:include page="/layout/meta.jsp" /> <jsp:include page="/layout/link.jsp" />
 </head>
 <body>   
-	
+	<%
+		String root = request.getContextPath(); 
+		
+		// 세션에서 유저객체 가져와서 로그인이 됐는지 확인	
+		User user = (User) session.getAttribute("user");
+		boolean login = (user != null);
+	%>
 	<jsp:include page="/layout/header.jsp" />
 	
 	<div class="row m-0 mypage">
@@ -19,14 +25,9 @@
 			    <ul class="nav nav-pills flex-column mb-auto">
 			      <!-- 로그인 시 -->
 			      <% if( login ) { %>
-			      	
-			      	
+			      	<a href="<%= root %>/user/update.jsp" class="nav-link link-body-emphasis">회원정보 수정</a>
 			      <% } %>
-			      <li>
-			        <a href="<%= root %>/user/order.jsp" class="nav-link link-body-emphasis">
-			          주문내역
-			        </a>
-			      </li>
+			        <a href="<%= root %>/user/order.jsp" class="nav-link link-body-emphasis">주문내역</a>
 			    </ul>
 			    <hr>
 			  </div>
@@ -40,7 +41,9 @@
 			<!-- 마이 페이지 -->
 			<div class="container shop m-auto mb-5">
 				<div class="btn-box d-grid gap-2">
+				<% if (login)  { %>
 					<a href="<%= root %>/user/update.jsp" class="btn btn-outline-primary btn-lg px-4 gap-3">회원정보 수정</a>
+					<% } %>
 					<a href="<%= root %>/user/order.jsp" class="btn btn-outline-primary btn-lg px-4 gap-3">주문내역</a>
 				</div>
 			</div>
