@@ -14,9 +14,7 @@
     Product product = productDAO.getProductById(productId);
     
     // 장바구니 리스트 가져오기
-    ArrayList<Product> cartList = (ArrayList<Product>) ( loginId != null ?
-                                    session.getAttribute(loginId) :
-                                    session.getAttribute("user"));
+    ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartList");
     
     // 장바구니가 없으면 새로 생성
     if (cartList == null) {
@@ -41,7 +39,7 @@
 
     // 장바구니 리스트를 세션에 저장
     if (loginId != null) {
-        session.setAttribute(loginId, cartList);
+        session.setAttribute("loginId", cartList);
     } else {
         session.setAttribute("user", cartList);
     }

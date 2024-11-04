@@ -54,17 +54,6 @@ body {
 	top: 0;
 	bottom: 0;
 }
-	.mainBtn {
-	display: inline-block;
- 	padding: 8px 24px;
- 	border: 1px solid #0d6dfd;
- 	text-align: center; 
- 	text-decoration: none;
- 	border-radius: 8px; 
- 	font-size: 20px;
- 	color: #fff;
- 	background-color: #0d6dfd;
-	}
 
 /* 입력 폼 반응형 */
 /* 768px 이하 화면 크기에 대한 스타일 */

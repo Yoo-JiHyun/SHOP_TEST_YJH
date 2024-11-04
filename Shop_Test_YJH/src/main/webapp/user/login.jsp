@@ -23,6 +23,9 @@
 		}
 		
 		// 아이디 저장 쿠키 가져오기
+	    String rememberId = request.getParameter("remember-id");
+	    Cookie cookieRememberId = new Cookie("remember-id", "");
+	   	Cookie cookieId = new Cookie("id", "");
 		
 	%>
 	<jsp:include page="/layout/header.jsp" />
@@ -46,9 +49,6 @@
 	    <div class="form-check text-start my-3 d-flex justify-content-around">
 	    	<div class="item">
 	    	  <%
-	    	  	String rememberId = request.getParameter("remember-id");
-	    		Cookie cookieRememberId = new Cookie("remember-id", "");
-	    		Cookie cookieId = new Cookie("id", "");
 	    	  	if( rememberId != null && rememberId.equals("on") ) {
 	    	  		cookieRememberId.setValue( URLEncoder.encode(rememberId, "UTF-8") );
 	    			cookieId.setValue( URLEncoder.encode(loginId, "UTF-8") );

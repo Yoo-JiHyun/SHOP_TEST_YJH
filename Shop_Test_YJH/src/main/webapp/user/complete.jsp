@@ -12,6 +12,7 @@
 	<% 
 		String root = request.getContextPath();
 		String msg = request.getParameter("msg");
+		String loginId = (String) session.getAttribute("loginId");
 	%>
 	
 	<jsp:include page="/layout/header.jsp" />
@@ -27,7 +28,7 @@
 			<h1 class="text-center">회원 가입이 완료되었습니다.</h1>
 			<br>
 			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-			<a href="./user/index.jsp" class="mainBtn">메인 화면</a>
+			<a href="../index.jsp" class="btn btn-primary btn-lg px-4 gap-3">메인 화면</a>
 			</div>
 		<%
 			}
@@ -38,8 +39,11 @@
 		<%
 			if( msg.equals("0") ) {
 		%>
-			<h1 class="text-center">joeun님 환영 합니다.</h1>
-			<a href="./user/index.jsp" class="mainBtn">메인 화면</a>
+			<h1 class="text-center"><%= loginId %>님 환영 합니다.</h1>
+			<br>
+			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+			<a href="../index.jsp" class="btn btn-primary btn-lg px-4 gap-3">메인 화면</a>
+			</div>
 		<%
 			}
 		%>
@@ -52,7 +56,7 @@
 			<h1 class="text-center">회원 정보가 수정되었습니다.</h1>
 			<br>
 			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-			<a href="./user/index.jsp" class="mainBtn">메인 화면</a>
+			<a href="../index.jsp" class="btn btn-primary btn-lg px-4 gap-3">메인 화면</a>
 			</div>
 		<%
 			}
@@ -66,7 +70,7 @@
 			<h1 class="text-center">회원 정보가 삭제되었습니다.</h1>
 			<br>
 			<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-			<a href="./user/index.jsp" class="mainBtn">메인 화면</a>
+			<a href="../index.jsp" class="btn btn-primary btn-lg px-4 gap-3">메인 화면</a>
 			</div>
 			
 		<%

@@ -45,19 +45,19 @@ public class UserRepository extends JDBConnection {
 	 * @param pw
 	 * @return
 	 */
-	public User login(String id, String pw) {
+	public User login(String id, String password) {
 		
 		User user = null;
 
 		String sql = " SELECT * "
 				   + " FROM user "
 				   + " WHERE id =? "
-				   + " AND pw =? ";
+				   + " AND password =? ";
 		
 		try {
 			psmt = con.prepareStatement(sql);
 			psmt.setString(1, id);
-			psmt.setString(2, pw);
+			psmt.setString(2, password);
 			rs = psmt.executeQuery();
 			
 			if ( rs.next() ) {
@@ -315,39 +315,23 @@ public class UserRepository extends JDBConnection {
 	 * @param userId
 	 * @return
 	 */
-	public int deleteToken(String userId) {
-	    int result = 0;
+	public boolean deleteToken(String userId) {
+		boolean isDeleted = false;
+		
 	    String sql = "DELETE FROM persistent_logins WHERE user_id = ?";
 	    
 	    try {
 	        psmt = con.prepareStatement(sql);
 	        psmt.setString(1, userId);
 
-	        result = psmt.executeUpdate(); // 특정 사용자의 자동 로그인 정보 삭제 요청
+	        int result = psmt.executeUpdate(); // 특정 사용자의 자동 로그인 정보 삭제 요청
+	        isDeleted = (result > 0);
 	    } catch (SQLException e) {
 	        System.err.println("자동 로그인 정보 삭제 중, 에러 발생!");
 	        e.printStackTrace();
 	    }
-	    System.out.println("자동 로그인 정보 " + result + "개의 데이터가 삭제되었습니다.");
-	    return result;
+	    return isDeleted;
 	}
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

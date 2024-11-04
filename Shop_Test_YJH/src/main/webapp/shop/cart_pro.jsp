@@ -9,9 +9,8 @@
     String productId = request.getParameter("id");
     Product product = productDAO.getProductById(productId);
     
-    List<Product> productList = (List<Product>) session.getAttribute(
-        loginId != null ? loginId : "user"
-    );
+    List<Product> productList = (List<Product>)
+    		session.getAttribute( loginId != null ? loginId : "user");
     
     if (productList == null) {
         productList = new ArrayList<>();
